@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techefx-eureka-naming-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: techefx-eureka-naming-server
+  template:
+    metadata:
+      labels:
+        app: techefx-eureka-naming-server
+        tier: backend
+        track: stable
+    spec:
+      containers:
+        - name: eureka
+          image: "techefx-eureka-naming-server:latest"
+          imagePullPolicy: Never
+          ports:
+            - name: eureka-port
+              containerPort: 8761
